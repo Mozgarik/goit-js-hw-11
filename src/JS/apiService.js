@@ -18,13 +18,16 @@ export default class Api {
         .catch(error => console.log(error))
     }
     incrementPage() {
-        this.page += 1
+           this.page += 1
     }
     setValue(value) {
         this.query = value
     }
     getValue() {
         return this.query
+    }
+    resetPage() {
+        this.page = 1
     }
 }
 

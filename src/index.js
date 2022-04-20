@@ -15,22 +15,24 @@ refs.button.addEventListener('click', onLoadMore)
 
 async function getData(event) {
     event.preventDefault()
-    const query = refs.form.elements.query.value
+    API.resetPage()
+    const query = refs.form.elements.query.value  
     if(API.getValue() === query) {
       Notiflix.Notify.warning('Картинки по такому запросу уже существуют')
       return
-    } 
-    API.setValue(query)
-    refs.gallery.innerHTML = ''
+    }  
+    API.setValue(query)  
+    refs.gallery.innerHTML = ''  
     const data = await API.getImages(query)
     if(data.hits.length < 1) {
       Notiflix.Notify.warning('По вашему запросу ничего не найденно')
-    }
-    renderMarkup(data.hits)
+    } 
     initModal()
+    renderMarkup(data.hits)
     if(data.hits.length > 19) {
-      refs.button.style.display = 'block'
+      refs.button.style.display = 'block'   
     }
+  
 }
 
 function renderMarkup(data) {
